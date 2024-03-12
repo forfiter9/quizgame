@@ -17,6 +17,8 @@ navigation = "2.7.7"
 retrofit = "2.9.0"
 mockk = "1.13.7"
 lifecycle = "2.7.0"
+kotest-assertions-core = "5.7.2"
+kotlinx-coroutines-test = "1.7.1"
 
 [libraries]
 androidx-constraintlayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "constraintlayout" }
@@ -38,6 +40,8 @@ retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit
 androidx-fragment-ktx = { module = "androidx.fragment:fragment-ktx", version.ref = "fragment-ktx" }
 androidx-viewmodel = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "lifecycle" }
 androidx-lifecycle = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycle" }
+kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlinx-coroutines-test" }
+kotest-assertions-core = { module = "io.kotest:kotest-assertions-core", version.ref = "kotest-assertions-core" }
 
 [plugins]
 com-android-application = { id = "com.android.application", version.ref = "agp" }
