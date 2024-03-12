@@ -1,0 +1,45 @@
+[versions]
+androidx-junit = "1.1.5"
+constraintlayout = "2.1.4"
+fragment-ktx = "1.6.2"
+core-ktx = "1.12.0"
+espresso-core = "3.5.1"
+junit = "4.13.2"
+lifecycle-runtime-ktx = "2.7.0"
+agp = "8.1.0-rc01"
+org-jetbrains-kotlin-android = "1.8.10"
+appcompat = "1.6.1"
+material = "1.11.0"
+glide = "4.15.1"
+gson = "2.10.1"
+hilt-android = "2.48"
+navigation = "2.7.7"
+retrofit = "2.9.0"
+mockk = "1.13.7"
+lifecycle = "2.7.0"
+
+[libraries]
+androidx-constraintlayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "constraintlayout" }
+androidx-core-ktx = { module = "androidx.core:core-ktx", version.ref = "core-ktx" }
+androidx-espresso-core = { module = "androidx.test.espresso:espresso-core", version.ref = "espresso-core" }
+androidx-junit = { module = "androidx.test.ext:junit", version.ref = "androidx-junit" }
+junit = { module = "junit:junit", version.ref = "junit" }
+appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+androidx-navigation = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "navigation" }
+androidx-navigation-fragment-ktx = { module = "androidx.navigation:navigation-fragment-ktx", version.ref = "navigation" }
+converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retrofit" }
+glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
+gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
+hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hilt-android" }
+hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "hilt-android" }
+mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
+retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
+androidx-fragment-ktx = { module = "androidx.fragment:fragment-ktx", version.ref = "fragment-ktx" }
+androidx-viewmodel = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "lifecycle" }
+androidx-lifecycle = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycle" }
+
+[plugins]
+com-android-application = { id = "com.android.application", version.ref = "agp" }
+org-jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "org-jetbrains-kotlin-android" }
+com-android-library = { id = "com.android.library", version.ref = "agp" }
