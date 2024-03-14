@@ -22,7 +22,7 @@
     <dimen name="continue_button_height">48dp</dimen>
     <dimen name="continue_button_margin_bottom">20dp</dimen>
 
-    <dimen name="item_choice_container_height">105dp</dimen>
+    <dimen name="item_choice_container_height">110dp</dimen>
     <dimen name="item_choice_background_margin">8dp</dimen>
     <dimen name="item_choice_icon">30dp</dimen>
     <dimen name="item_choice_margin">8dp</dimen>

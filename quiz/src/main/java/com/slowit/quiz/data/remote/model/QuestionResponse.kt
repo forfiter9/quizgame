@@ -6,7 +6,7 @@ data class QuestionResponse(
     @SerializedName("question")
     val question: String,
     @SerializedName("time")
-    val time: Int,
+    val time: Long,
     @SerializedName("image")
     val image: String,
     @SerializedName("choices")

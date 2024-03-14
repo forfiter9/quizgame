@@ -18,7 +18,6 @@ import com.slowit.quiz.R
 import com.slowit.quiz.databinding.FragmentQuizBinding
 import dagger.hilt.android.AndroidEntryPoint
 
-
 @AndroidEntryPoint
 class QuizFragment : Fragment() {
 
@@ -57,6 +56,13 @@ class QuizFragment : Fragment() {
 
                     binding.questionText.text =
                         Html.fromHtml(currentQuestion.question, Html.FROM_HTML_MODE_COMPACT)
+
+                    binding.linearProgressBar.apply {
+                        isVisible = true
+                        setProgress(100, true)
+                    }
+
+                    viewModel.startCountDownTimer(currentQuestion.time)
                 }
             }
 
@@ -101,6 +107,7 @@ class QuizFragment : Fragment() {
                             resultBannerText.setText(R.string.correct)
                         }
                         binding.continueButton.isVisible = true
+                        binding.linearProgressBar.isVisible = false
                     }
 
                     !choice.isCorrectChoice -> {
@@ -117,6 +124,7 @@ class QuizFragment : Fragment() {
                             resultBannerText.setText(R.string.wrong)
                         }
                         binding.continueButton.isVisible = true
+                        binding.linearProgressBar.isVisible = false
                     }
                 }
             }
@@ -132,6 +140,7 @@ class QuizFragment : Fragment() {
                             viewModel.state.value?.score.toString()
                         )
                         continueButton.isVisible = false
+                        linearProgressBar.isVisible = false
                     }
                     questionImage.isVisible = !isQuizFinished
                     choicesRecyclerView.isVisible = !isQuizFinished
@@ -160,6 +169,13 @@ class QuizFragment : Fragment() {
                 if (it) {
                     context?.showMessage(getString(R.string.error_global_msg))
                 }
+            }
+
+        viewModel.state
+            .map { it.remainingTimePercentage }
+            .distinctUntilChanged()
+            .observe(viewLifecycleOwner) {
+                binding.linearProgressBar.setProgress(it, true)
             }
     }
 

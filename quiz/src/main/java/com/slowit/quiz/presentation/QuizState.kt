@@ -11,7 +11,8 @@ data class QuizState (
     val selectedChoice: Choice?,
     val score: Int,
     val isQuizFinished: Boolean,
-    val isError: Boolean
+    val isError: Boolean,
+    val remainingTimePercentage: Int
 ) {
 
     companion object {
@@ -24,7 +25,8 @@ data class QuizState (
                 selectedChoice = null,
                 score = 0,
                 isQuizFinished = false,
-                isError = false
+                isError = false,
+                remainingTimePercentage = 0
             )
     }
 }
