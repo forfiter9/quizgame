@@ -4,5 +4,5 @@ data class QuizQuestion(
     val question: String,
     val time: Long,
     val image: String,
-    val choices: List<Choice>
+    val choices: List<Choice>,
 )

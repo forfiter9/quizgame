@@ -20,21 +20,24 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class QuizFragment : Fragment() {
-
     private var _binding: FragmentQuizBinding? = null
     private val binding get() = _binding!!
     private val viewModel: QuizViewModel by viewModels()
     private lateinit var choiceAdapter: ChoicesAdapter
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?,
     ): View {
         _binding = FragmentQuizBinding.inflate(inflater, container, false)
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    override fun onViewCreated(
+        view: View,
+        savedInstanceState: Bundle?,
+    ) {
         super.onViewCreated(view, savedInstanceState)
         configureView()
         viewModel.getQuestions()
@@ -100,8 +103,8 @@ class QuizFragment : Fragment() {
                                 setBackgroundColor(
                                     ContextCompat.getColor(
                                         requireContext(),
-                                        com.slowit.core.R.color.green_ryb
-                                    )
+                                        com.slowit.core.R.color.green_ryb,
+                                    ),
                                 )
                             }
                             resultBannerText.setText(R.string.correct)
@@ -117,8 +120,8 @@ class QuizFragment : Fragment() {
                                 setBackgroundColor(
                                     ContextCompat.getColor(
                                         requireContext(),
-                                        com.slowit.core.R.color.sizzling_red
-                                    )
+                                        com.slowit.core.R.color.sizzling_red,
+                                    ),
                                 )
                             }
                             resultBannerText.setText(R.string.wrong)
@@ -135,10 +138,11 @@ class QuizFragment : Fragment() {
             .observe(viewLifecycleOwner) { isQuizFinished ->
                 with(binding) {
                     if (isQuizFinished) {
-                        questionText.text = getString(
-                            R.string.score_message,
-                            viewModel.state.value?.score.toString()
-                        )
+                        questionText.text =
+                            getString(
+                                R.string.score_message,
+                                viewModel.state.value?.score.toString(),
+                            )
                         continueButton.isVisible = false
                         linearProgressBar.isVisible = false
                     }
@@ -155,11 +159,12 @@ class QuizFragment : Fragment() {
             .map { it.currentQuestionIndex }
             .distinctUntilChanged()
             .observe(viewLifecycleOwner) { currentQuestionIndex ->
-                binding.counter.counterText.text = getString(
-                    R.string.counter,
-                    (currentQuestionIndex + 1).toString(),
-                    viewModel.state.value?.questions?.size.toString()
-                )
+                binding.counter.counterText.text =
+                    getString(
+                        R.string.counter,
+                        (currentQuestionIndex + 1).toString(),
+                        viewModel.state.value?.questions?.size.toString(),
+                    )
             }
 
         viewModel.state
@@ -180,13 +185,15 @@ class QuizFragment : Fragment() {
     }
 
     private fun configureView() {
-        choiceAdapter = ChoicesAdapter().apply {
-            onChoiceClickListener = ChoicesAdapter.OnChoiceClickListener {
-                if (viewModel.state.value?.selectedChoice == null) {
-                    viewModel.selectChoice(it)
-                }
+        choiceAdapter =
+            ChoicesAdapter().apply {
+                onChoiceClickListener =
+                    ChoicesAdapter.OnChoiceClickListener {
+                        if (viewModel.state.value?.selectedChoice == null) {
+                            viewModel.selectChoice(it)
+                        }
+                    }
             }
-        }
 
         with(binding) {
             choicesRecyclerView.apply {

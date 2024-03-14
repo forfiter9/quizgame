@@ -12,7 +12,6 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 class NetworkModule {
-
     @Provides
     @Singleton
     fun provideRetrofit(): Retrofit {
@@ -20,7 +19,7 @@ class NetworkModule {
             .baseUrl("https://create.kahoot.it")
             .client(
                 OkHttpClient.Builder()
-                    .build()
+                    .build(),
             )
             .addConverterFactory(GsonConverterFactory.create())
             .build()

@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.DiffUtil
@@ -16,19 +15,23 @@ import com.slowit.quiz.R
 import com.slowit.quiz.domain.model.Choice
 
 class ChoicesAdapter : ListAdapter<Choice, ChoicesAdapter.ChoiceViewHolder>(
-    diffCallback
+    diffCallback,
 ) {
-
     var onChoiceClickListener: OnChoiceClickListener? = null
     private var selectedChoice: Choice? = null
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChoiceViewHolder =
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int,
+    ): ChoiceViewHolder =
         ChoiceViewHolder(
-            LayoutInflater.from(parent.context).inflate(R.layout.item_choice, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.item_choice, parent, false),
         )
 
-
-    override fun onBindViewHolder(holder: ChoiceViewHolder, position: Int) {
+    override fun onBindViewHolder(
+        holder: ChoiceViewHolder,
+        position: Int,
+    ) {
         val currentChoice = getItem(position)
 
         changeCorrectImageConstraint(holder.correctAnswerImage, position)
@@ -39,7 +42,7 @@ class ChoicesAdapter : ListAdapter<Choice, ChoicesAdapter.ChoiceViewHolder>(
                 setBackgroundTintForItemView(
                     holder,
                     com.slowit.core.R.color.venetian_red,
-                    currentChoice
+                    currentChoice,
                 )
             }
 
@@ -48,7 +51,7 @@ class ChoicesAdapter : ListAdapter<Choice, ChoicesAdapter.ChoiceViewHolder>(
                 setBackgroundTintForItemView(
                     holder,
                     com.slowit.core.R.color.bright_navy_blue,
-                    currentChoice
+                    currentChoice,
                 )
             }
 
@@ -57,7 +60,7 @@ class ChoicesAdapter : ListAdapter<Choice, ChoicesAdapter.ChoiceViewHolder>(
                 setBackgroundTintForItemView(
                     holder,
                     com.slowit.core.R.color.chinese_gold,
-                    currentChoice
+                    currentChoice,
                 )
             }
 
@@ -66,7 +69,7 @@ class ChoicesAdapter : ListAdapter<Choice, ChoicesAdapter.ChoiceViewHolder>(
                 setBackgroundTintForItemView(
                     holder,
                     com.slowit.core.R.color.verse_green,
-                    currentChoice
+                    currentChoice,
                 )
             }
 
@@ -75,7 +78,7 @@ class ChoicesAdapter : ListAdapter<Choice, ChoicesAdapter.ChoiceViewHolder>(
                 setBackgroundTintForItemView(
                     holder,
                     com.slowit.core.R.color.verse_green,
-                    currentChoice
+                    currentChoice,
                 )
             }
         }
@@ -89,7 +92,7 @@ class ChoicesAdapter : ListAdapter<Choice, ChoicesAdapter.ChoiceViewHolder>(
 
     private fun changeCorrectImageConstraint(
         correctAnswerImage: ImageView,
-        position: Int
+        position: Int,
     ) {
         val layoutParams = correctAnswerImage.layoutParams as ConstraintLayout.LayoutParams
         if (position % 2 == 0) {
@@ -108,21 +111,22 @@ class ChoicesAdapter : ListAdapter<Choice, ChoicesAdapter.ChoiceViewHolder>(
     private fun setBackgroundTintForItemView(
         holder: ChoiceViewHolder,
         colorId: Int,
-        currentChoice: Choice
+        currentChoice: Choice,
     ) {
-        val tintId = when {
-            selectedChoice == null -> colorId
-            currentChoice.isCorrectChoice -> com.slowit.core.R.color.green_ryb
-            selectedChoice == currentChoice -> com.slowit.core.R.color.venetian_red
-            else -> com.slowit.core.R.color.baker_miller_pink
-        }
+        val tintId =
+            when {
+                selectedChoice == null -> colorId
+                currentChoice.isCorrectChoice -> com.slowit.core.R.color.green_ryb
+                selectedChoice == currentChoice -> com.slowit.core.R.color.venetian_red
+                else -> com.slowit.core.R.color.baker_miller_pink
+            }
 
         holder.apply {
             itemBackground.background.setTint(
                 ContextCompat.getColor(
                     holder.itemView.context,
-                    tintId
-                )
+                    tintId,
+                ),
             )
             correctAnswerImage.isVisible = selectedChoice != null
             figureImage.isVisible = selectedChoice == null
@@ -148,12 +152,17 @@ class ChoicesAdapter : ListAdapter<Choice, ChoicesAdapter.ChoiceViewHolder>(
     }
 
     companion object {
-        private val diffCallback = object : DiffUtil.ItemCallback<Choice>() {
-            override fun areItemsTheSame(oldItem: Choice, newItem: Choice) =
-                oldItem.answer == newItem.answer
+        private val diffCallback =
+            object : DiffUtil.ItemCallback<Choice>() {
+                override fun areItemsTheSame(
+                    oldItem: Choice,
+                    newItem: Choice,
+                ) = oldItem.answer == newItem.answer
 
-            override fun areContentsTheSame(oldItem: Choice, newItem: Choice) =
-                oldItem.hashCode() == newItem.hashCode()
-        }
+                override fun areContentsTheSame(
+                    oldItem: Choice,
+                    newItem: Choice,
+                ) = oldItem.hashCode() == newItem.hashCode()
+            }
     }
 }

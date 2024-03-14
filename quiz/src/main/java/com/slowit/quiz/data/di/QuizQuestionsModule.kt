@@ -15,26 +15,20 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 internal object QuizQuestionsModule {
-
     @Provides
     @Singleton
-    fun provideRocketApi(
-        retrofit: Retrofit,
-    ): QuizQuestionApi {
+    fun provideRocketApi(retrofit: Retrofit): QuizQuestionApi {
         return retrofit.create(QuizQuestionApi::class.java)
     }
 
     @Provides
-    fun provideGetQuizQuestionsUseCase(
-        quizQuestionsRepository: QuizQuestionsRepository,
-    ): GetQuizQuestionsUseCase {
+    fun provideGetQuizQuestionsUseCase(quizQuestionsRepository: QuizQuestionsRepository): GetQuizQuestionsUseCase {
         return GetQuizQuestionsUseCase(quizQuestionsRepository)
     }
 
     @Module
     @InstallIn(SingletonComponent::class)
     interface BindsModule {
-
         @Binds
         @Singleton
         fun bindQuizQuestionsRepository(impl: QuizQuestionRepositoryImpl): QuizQuestionsRepository

@@ -6,5 +6,5 @@ data class ChoiceResponse(
     @SerializedName("answer")
     val answer: String,
     @SerializedName("correct")
-    val correct: Boolean
+    val correct: Boolean,
 )

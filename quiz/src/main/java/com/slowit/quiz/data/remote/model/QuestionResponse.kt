@@ -12,5 +12,5 @@ data class QuestionResponse(
     @SerializedName("choices")
     val choices: List<ChoiceResponse>,
     @SerializedName("pointsMultiplier")
-    val pointsMultiplier: Int
+    val pointsMultiplier: Int,
 )
