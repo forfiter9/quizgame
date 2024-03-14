@@ -67,7 +67,7 @@ class QuizViewModel
         }
 
         fun startCountDownTimer(questionTime: Long) {
-            val timerTickTime = 1000L
+            val timerTickTime = 100L
             countDownTimer =
                 object : CountDownTimer(questionTime, timerTickTime) {
                     override fun onTick(millisUntilFinished: Long) {
