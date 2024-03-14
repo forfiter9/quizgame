@@ -1,5 +1,6 @@
 package com.slowit.quiz.data.repositories
 
+import android.util.Log
 import com.slowit.quiz.data.mapper.toDomainModel
 import com.slowit.quiz.data.remote.api.QuizQuestionApi
 import com.slowit.quiz.domain.model.QuizQuestion
@@ -10,6 +11,13 @@ class QuizQuestionRepositoryImpl @Inject constructor(
     private val quizQuestionApi: QuizQuestionApi
 ): QuizQuestionsRepository {
 
-    override suspend fun getQuizQuestions(): List<QuizQuestion> =
-        quizQuestionApi.getQuizQuestions().toDomainModel()
+    override suspend fun getQuizQuestions(): List<QuizQuestion> {
+        var questionsList = emptyList<QuizQuestion>()
+        runCatching {
+            questionsList = quizQuestionApi.getQuizQuestions().toDomainModel()
+        }.onFailure {
+            Log.e("Quiz question download error", "${it.message}", )
+        }
+        return questionsList
+    }
 }

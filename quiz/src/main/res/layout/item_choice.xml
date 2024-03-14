@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/item_view_root"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:elevation="@dimen/result_banner_elevation"
+    android:layout_height="@dimen/item_choice_container_height"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    
+    <View
+        android:id="@+id/item_background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@drawable/background_rounded_white_radius_5"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="@dimen/item_choice_background_margin"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+    
+    <ImageView
+        android:id="@+id/item_correct_icon"
+        android:layout_width="@dimen/item_choice_icon"
+        android:layout_height="@dimen/item_choice_icon"
+        android:visibility="invisible"
+        tools:visibility="visible"
+        tools:src="@drawable/ic_correct"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <ImageView
+        android:id="@+id/item_figure_image"
+        android:layout_width="@dimen/item_choice_icon"
+        android:layout_height="@dimen/item_choice_icon"
+        android:layout_margin="@dimen/item_choice_margin"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:src="@drawable/ic_triangle"
+        />
+
+    <TextView
+        android:id="@+id/item_choice_answer"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:paddingHorizontal="@dimen/item_choice_answer_padding"
+        app:layout_constraintTop_toTopOf="@id/item_background"
+        app:layout_constraintEnd_toEndOf="@id/item_background"
+        app:layout_constraintStart_toStartOf="@id/item_background"
+        app:layout_constraintBottom_toBottomOf="@id/item_background"
+        tools:text="London"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,14 +1,139 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background_quiz"
     tools:context=".presentation.QuizFragment">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/background_quiz"
-        android:text="@string/hello_blank_fragment" />
+    <ProgressBar
+        android:id="@+id/loading_progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
-</FrameLayout>
+    <include
+        android:id="@+id/result_banner"
+        layout="@layout/result_banner"
+        android:paddingBottom="@dimen/padding_bottom_result_banner"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <include
+        android:id="@+id/counter"
+        layout="@layout/question_counter"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="@dimen/question_counter_margin_top"
+        android:layout_marginStart="@dimen/question_counter_margin_start"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/tittle_background"
+        android:layout_width="@dimen/tittle_background_width"
+        android:layout_height="@dimen/tittle_background_height"
+        android:layout_marginTop="@dimen/question_counter_margin_top"
+        android:background="@drawable/background_rounded_white_radius_20"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/title_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/tittle_text_margin_end"
+        android:text="@string/quiz"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="@id/tittle_background"
+        app:layout_constraintEnd_toEndOf="@id/tittle_background"
+        app:layout_constraintStart_toEndOf="@id/tittle_image"
+        app:layout_constraintTop_toTopOf="@id/tittle_background" />
+
+    <ImageView
+        android:id="@+id/tittle_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/tittle_image_margin_start"
+        android:src="@drawable/ic_quiz"
+        app:layout_constraintBottom_toBottomOf="@id/tittle_background"
+        app:layout_constraintEnd_toStartOf="@id/title_text"
+        app:layout_constraintStart_toStartOf="@id/tittle_background"
+        app:layout_constraintTop_toTopOf="@id/tittle_background" />
+
+    <ImageView
+        android:id="@+id/question_image"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/question_image_height"
+        android:layout_marginHorizontal="@dimen/question_image_margin_horizontal"
+        android:layout_marginTop="@dimen/question_image_margin_top"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tittle_background"
+        tools:src="@drawable/ic_quiz" />
+
+    <View
+        android:id="@+id/question_text_background"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/question_text_background_height"
+        android:layout_marginHorizontal="@dimen/question_text_background_margin_horizontal"
+        android:layout_marginTop="@dimen/question_image_margin_top"
+        android:backgroundTint="@color/white"
+        android:background="@drawable/background_rounded_white_radius_10"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/question_image" />
+
+    <TextView
+        android:id="@+id/question_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="@dimen/question_text_padding"
+        android:backgroundTint="@color/white"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="@id/question_text_background"
+        app:layout_constraintEnd_toEndOf="@id/question_text_background"
+        app:layout_constraintStart_toStartOf="@id/question_text_background"
+        app:layout_constraintTop_toTopOf="@id/question_text_background"
+        tools:text="What is the caiptal of France?" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/choices_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/question_recycler_margin"
+        android:nestedScrollingEnabled="false"
+        android:overScrollMode="never"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/question_text_background"
+        app:spanCount="2"
+        tools:itemCount="4"
+        tools:listitem="@layout/item_choice" />
+    
+    <Button
+        android:id="@+id/continue_button"
+        android:layout_width="@dimen/continue_button_width"
+        android:layout_height="@dimen/continue_button_height"
+        android:visibility="invisible"
+        android:textAllCaps="false"
+        tools:visibility="visible"
+        android:background="@drawable/background_rounded_white_radius_10"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="@dimen/continue_button_margin_bottom"
+        android:text="@string/continue_button"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

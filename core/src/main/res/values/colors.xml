@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="venetian_red">#E21B3C</color>
+    <color name="bright_navy_blue">#1368CE</color>
+    <color name="chinese_gold">#D89E00</color>
+    <color name="verse_green">#26890C</color>
+    <color name="baker_miller_pink">#FF99AA</color>
+    <color name="green_ryb">#66BF39</color>
+    <color name="sizzling_red">#FF3355</color>
+</resources>

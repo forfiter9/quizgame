@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="background_large_radius">20dp</dimen>
+    <dimen name="background_small_radius">5dp</dimen>
+    <dimen name="padding_bottom_result_banner">9dp</dimen>
+    <dimen name="question_counter_margin_top">14dp</dimen>
+    <dimen name="question_counter_margin_start">20dp</dimen>
+    <dimen name="tittle_background_width">100dp</dimen>
+    <dimen name="tittle_background_height">40dp</dimen>
+    <dimen name="tittle_text_margin_end">5dp</dimen>
+    <dimen name="tittle_image_margin_start">5dp</dimen>
+    <dimen name="question_image_height">180dp</dimen>
+    <dimen name="question_image_margin_horizontal">40dp</dimen>
+    <dimen name="question_image_margin_top">30dp</dimen>
+    <dimen name="question_text_background_height">60dp</dimen>
+    <dimen name="question_text_background_margin_top">20dp</dimen>
+    <dimen name="question_text_background_margin_horizontal">25dp</dimen>
+    <dimen name="question_text_padding">5dp</dimen>
+    <dimen name="question_recycler_margin">20dp</dimen>
+    <dimen name="continue_button_width">200dp</dimen>
+    <dimen name="continue_button_height">48dp</dimen>
+    <dimen name="continue_button_margin_bottom">20dp</dimen>
+
+    <dimen name="item_choice_container_height">105dp</dimen>
+    <dimen name="item_choice_background_margin">8dp</dimen>
+    <dimen name="item_choice_icon">30dp</dimen>
+    <dimen name="item_choice_margin">8dp</dimen>
+    <dimen name="item_choice_answer_padding">2dp</dimen>
+
+    <dimen name="question_counter_background_width">60dp</dimen>
+    <dimen name="question_counter_background_height">40dp</dimen>
+    <dimen name="question_counter_text_size">16sp</dimen>
+
+    <dimen name="result_banner_height">72dp</dimen>
+    <dimen name="result_banner_elevation">9dp</dimen>
+    <dimen name="result_banner_text_size">20sp</dimen>
+</resources>

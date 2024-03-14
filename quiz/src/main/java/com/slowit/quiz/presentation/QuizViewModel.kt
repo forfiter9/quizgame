@@ -1,8 +1,10 @@
 package com.slowit.quiz.presentation
 
-import android.util.Log
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.slowit.quiz.domain.model.Choice
 import com.slowit.quiz.domain.usecase.GetQuizQuestionsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -12,10 +14,45 @@ import javax.inject.Inject
 class QuizViewModel @Inject constructor(
     private val getQuizQuestionsUseCase: GetQuizQuestionsUseCase
 ): ViewModel() {
+
+    private val _state: MutableLiveData<QuizState> = MutableLiveData(QuizState.EMPTY)
+    val state: LiveData<QuizState> = _state
+
     fun getQuestions() {
         viewModelScope.launch {
             val questions = getQuizQuestionsUseCase.invoke()
-            Log.e("TEST@", "$questions", )
+            _state.value = _state.value?.copy(
+                questions = questions,
+                isLoadingQuestions = false,
+                currentQuestionIndex = 0,
+                currentQuestion = questions.firstOrNull(),
+                isError = questions.isEmpty()
+            )
+        }
+    }
+
+    fun selectChoice(choice: Choice?) {
+        _state.value?.let {
+            _state.value = _state.value?.copy(
+                selectedChoice = choice,
+                score = if (choice?.isCorrectChoice == true) it.score + 1 else it.score
+            )
+        }
+    }
+
+    fun showNextQuestion() {
+        selectChoice(null)
+        _state.value?.let{
+            if (it.questions.size <= it.currentQuestionIndex + 1) {
+                _state.value = _state.value?.copy(
+                    isQuizFinished = true,
+                )
+            } else {
+                _state.value = _state.value?.copy(
+                    currentQuestion = it.questions[it.currentQuestionIndex + 1],
+                    currentQuestionIndex = it.currentQuestionIndex + 1
+                )
+            }
         }
     }
 }
